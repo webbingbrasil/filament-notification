@@ -1,4 +1,4 @@
-# Filament Notification
+# Filament Notification (WIP)
 
 Notification feed for Filament with actions support
 
