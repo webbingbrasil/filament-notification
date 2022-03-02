@@ -42,6 +42,13 @@ After that, delete unused views from `resources/views/vendor/filament`
 All database notification are displayed in feed, so you will need to configure `via()` to use database provider and message in `toArray()` or `toDatabase()` methods.
 
 ```php
+<?php
+
+namespace App\Notifications;
+
+use Illuminate\Notifications\Notification;
+use Webbingbrasil\FilamentNotification\Notifications\NotificationLevel;
+
 class UserNotification extends Notification
 {
 
@@ -68,6 +75,13 @@ class UserNotification extends Notification
 You can add actions to any notification displayed in feed using `notificationFeedActions()` method:
 
 ```php
+<?php
+
+namespace App\Notifications;
+
+use Illuminate\Notifications\Notification;
+use Webbingbrasil\FilamentNotification\Actions\ButtonAction;
+
 class UserNotification extends Notification
 {
     static public function notificationFeedActions()
