@@ -34,7 +34,7 @@
         'dark:border-gray-600 dark:bg-gray-700' => config('filament.dark_mode'),
     ])
     >
-        @if(!empty($notifications))
+        @if($notifications->isNotEmpty())
         <ul @class([
         'py-1 px-1 space-y-1 overflow-hidden divide-y divide-gray-300',
         'dark:border-gray-600 dark:bg-gray-700' => config('filament.dark_mode'),
