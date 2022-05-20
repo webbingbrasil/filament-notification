@@ -83,7 +83,7 @@
         @else
 
         <div class="flex items-center w-full h-8 px-3 text-sm font-medium">
-            Empty
+            <p class="px-3 text-sm font-normal text-center">You have no notifications</p>
         </div>
         @endif
     </div>
