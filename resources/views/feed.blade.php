@@ -58,7 +58,7 @@
 
                             {{ Arr::get($notification->data, 'title') }}
                         </div>
-                        <small class="px-3 text-sm font-normal">{{ Arr::get($notification->data, 'message') }}</small>
+                        <small class="block px-3 text-sm font-normal">{{ Arr::get($notification->data, 'message') }}</small>
 
                         <x-filament-notification::actions :actions="$this->getCachedNotificationActions($notification->type)" :record="$notification" />
                 </li>
