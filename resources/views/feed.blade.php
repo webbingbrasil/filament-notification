@@ -34,7 +34,7 @@
         'dark:border-gray-600 dark:bg-gray-700' => config('filament.dark_mode'),
     ])
     >
-        @if(!empty($notifications))
+        @if($notifications->isNotEmpty())
         <ul @class([
         'py-1 px-1 space-y-1 overflow-hidden divide-y divide-gray-300',
         'dark:border-gray-600 dark:bg-gray-700' => config('filament.dark_mode'),
@@ -58,7 +58,7 @@
 
                             {{ Arr::get($notification->data, 'title') }}
                         </div>
-                        <smal class="px-3 text-sm font-normal">{{ Arr::get($notification->data, 'message') }}</smal>
+                        <small class="block px-3 text-sm font-normal">{{ Arr::get($notification->data, 'message') }}</small>
 
                         <x-filament-notification::actions :actions="$this->getCachedNotificationActions($notification->type)" :record="$notification" />
                 </li>
@@ -83,7 +83,7 @@
         @else
 
         <div class="flex items-center w-full h-8 px-3 text-sm font-medium">
-            Empty
+            <p class="px-3 text-sm font-normal text-center">You have no notifications</p>
         </div>
         @endif
     </div>
