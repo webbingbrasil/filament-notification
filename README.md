@@ -12,30 +12,14 @@ composer require webbingbrasil/filament-notification
 
 ## Add notification feed icon
 
-First you will need to publish filament views 
+Use [render-hooks](https://filamentphp.com/docs/2.x/admin/appearance#render-hooks) to register notification feed component after global search
 
 ```bash
-php artisan vendor:publish --tag=filament-views
+Filament::registerRenderHook(
+    'global-search.end',
+    fn (): string => Blade::render('@livewire(\'filament-notification.feed\')'),
+);
 ```
-
-add `@livewire('filament-notification.feed')` to `resources/views/vendor/filament/components/layouts/app.blade.php` before top bar user menu:
-
-```php
-...
-    <div class="flex-1 flex gap-4 items-center justify-between">
-        <x-filament::layouts.app.topbar.breadcrumbs :breadcrumbs="$breadcrumbs" />
-
-        @livewire('filament.core.global-search')
-        
-        <!–– add notification feed icon before top bar user menu ––>
-        @livewire('filament-notification.feed') 
-        
-        <x-filament::layouts.app.topbar.user-menu />
-    </div>
-...
-```
-
-After that, delete unused views from `resources/views/vendor/filament`
 
 ## Configure notification
 
