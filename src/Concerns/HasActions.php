@@ -68,7 +68,7 @@ trait HasActions
             return;
         }
 
-        $this->cacheForm('mountedNotificationActionForm');
+        $this->cacheForm('mountedNotificationActionForm', $this->getMountedNotificationActionForm());
 
         app()->call($action->getMountUsing(), [
             'action' => $action,
