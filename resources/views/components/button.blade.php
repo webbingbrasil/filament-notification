@@ -1,23 +1,23 @@
 @props([
-    'color' => 'primary',
-    'disabled' => false,
-    'form' => null,
-    'icon' => null,
+    'color'        => 'primary',
+    'disabled'     => false,
+    'form'         => null,
+    'icon'         => null,
     'iconPosition' => 'before',
-    'tag' => 'button',
-    'type' => 'button',
-    'size' => 'md',
-    'outlined' => false,
+    'tag'          => 'button',
+    'type'         => 'button',
+    'size'         => 'md',
+    'outlined'     => false,
 ])
 
 @php
     $buttonClasses = array_merge([
         'inline-flex items-center justify-center font-medium tracking-tight rounded-lg border transition-colors focus:outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset filament-button',
-        'dark:focus:ring-offset-0' => config('tables.dark_mode'),
+        'dark:focus:ring-offset-0'      => config('tables.dark_mode'),
         'opacity-70 cursor-not-allowed' => $disabled,
-        'h-9 px-4' => $size === 'md',
-        'h-8 px-3 text-sm' => $size === 'sm',
-        'h-11 px-6 text-xl' => $size === 'lg',
+        'h-9 px-4'                      => $size === 'md',
+        'h-8 px-3 text-sm'              => $size === 'sm',
+        'h-11 px-6 text-xl'             => $size === 'lg',
     ], $outlined ? [
         'shadow focus:ring-white' => $color !== 'secondary',
         'text-primary-600 border-primary-600 hover:bg-primary-600/20 focus:bg-primary-700/20 focus:ring-offset-primary-700' => $color === 'primary',

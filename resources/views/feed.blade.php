@@ -9,7 +9,6 @@
         @class([
             'flex items-center justify-center w-10 h-10 '
         ])
-
     >
         <x-heroicon-o-bell class="h-5 -mr-1 align-text-top  @if($this->totalUnread) animate-swing @endif origin-top" />
         @if($this->totalUnread)
@@ -29,17 +28,19 @@
         x-transition:leave-start="translate-y-0 opacity-100"
         x-transition:leave-end="-translate-y-1 opacity-0"
         x-cloak
+        @if (config('filament-notification.width', false))
+            style="width: {{ config('filament-notification.width', '300px') }};"
+        @endif
         @class([
         'absolute z-10 right-0 rtl:right-auto rtl:left-0 mt-2 shadow-xl bg-white rounded-xl w-80 top-full',
         'dark:border-gray-600 dark:bg-gray-700' => config('filament.dark_mode'),
     ])
     >
         @if($notifications->isNotEmpty())
-        <ul @class([
-        'py-1 px-1 space-y-1 overflow-hidden divide-y divide-gray-300',
-        'dark:border-gray-600 dark:bg-gray-700' => config('filament.dark_mode'),
-    ])>
-
+            <ul @class([
+            'py-1 px-1 space-y-1 overflow-hidden divide-y divide-gray-300',
+            'dark:border-gray-600 dark:bg-gray-700' => config('filament.dark_mode'),
+        ])>
             @foreach($notifications as $notification)
                 <li @class([
                     'relative',
@@ -48,9 +49,9 @@
                         <div class="flex items-center w-full h-8 px-3 text-sm font-medium">
                             @php
                                 $icon = match (Arr::get($notification->data, 'level', 'info')) {
-                                    'info' => 'heroicon-o-information-circle',
+                                    'info'    => 'heroicon-o-information-circle',
                                     'warning' => 'heroicon-o-exclamation-circle',
-                                    'error' => 'heroicon-o-x-circle',
+                                    'error'   => 'heroicon-o-x-circle',
                                     'success' => 'heroicon-o-check-circle',
                                 }
                             @endphp
@@ -83,7 +84,7 @@
         @else
 
         <div class="flex items-center w-full h-8 px-3 text-sm font-medium">
-            <p class="px-3 text-sm font-normal text-center">You have no notifications</p>
+            <p class="px-3 text-sm font-normal text-center"> {{ trans('filament-notification::component.noNotifications') }} </p>
         </div>
         @endif
     </div>
