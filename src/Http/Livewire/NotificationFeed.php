@@ -19,6 +19,7 @@ class NotificationFeed extends Component implements Forms\Contracts\HasForms
     use Forms\Concerns\InteractsWithForms;
 
     protected $feed;
+
     public $totalUnread;
 
     public function boot()
@@ -35,7 +36,10 @@ class NotificationFeed extends Component implements Forms\Contracts\HasForms
     public function hydrateNotificationFeed()
     {
         $perPage = config('filament-notification::feed.perPage', 10);
-        $notifications = Auth::user()->notifications()->orderByDesc('created_at');
+        $notifications = config('filament-notification::feed.displayReadNotifications') 
+            ? Auth::user()->notifications()
+            : Auth::user()->unreadNotifications();
+        $notifications = $notifications->orderByDesc('created_at');
 
         $onlyTypes = config('filament-notification::feed.onlyTypes', []);
 
@@ -50,6 +54,7 @@ class NotificationFeed extends Component implements Forms\Contracts\HasForms
         }
 
         $this->feed = $notifications->paginate($perPage);
+
         $this->totalUnread = Auth::user()->unreadNotifications()->count();
     }
 
